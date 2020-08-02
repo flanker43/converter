@@ -1,6 +1,6 @@
 package com.example.converter;
 
-import com.example.converter.dto.ExchangeRatesXml;
+import com.example.converter.dto.ExchangeRates;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -17,9 +17,9 @@ public class XMLService {
     private final Logger logger = LoggerFactory.getLogger(XMLService.class);
 
 
-    public ExchangeRatesXml parseXml() {
+    public ExchangeRates parseXml() {
 
-        ExchangeRatesXml exchangeRatesXml = null;
+        ExchangeRates exchangeRates = null;
 
         try {
             String URL = "http://www.cbr.ru/scripts/XML_daily.asp";
@@ -32,7 +32,7 @@ public class XMLService {
 
             NodeList nodeList = doc.getElementsByTagName("Valute");
 
-            List<ExchangeRatesXml> valute = new ArrayList<>();
+            List<ExchangeRates> valute = new ArrayList<>();
 
             for (int i = 0; i < nodeList.getLength(); i++) {
 
@@ -40,14 +40,15 @@ public class XMLService {
 
                 if(node.getNodeType() == Node.ELEMENT_NODE) {
                     Element elem = (Element) node;
-                    ExchangeRatesXml exchangeRatesXml1 = new ExchangeRatesXml(
-                            Integer.parseInt(elem.getElementsByTagName("id").item(0).getTextContent()),
+                    exchangeRates = new ExchangeRates(
+                            Integer.parseInt(elem.getAttribute("Valute ID")),
+                            Integer.parseInt(elem.getElementsByTagName("NumCode").item(0).getTextContent()),
                             elem.getElementsByTagName("name").item(0).getTextContent(),
                             elem.getElementsByTagName("charCode").item(0).getTextContent(),
                             Double.parseDouble(elem.getElementsByTagName("value").item(0).getTextContent()),
                             Integer.parseInt(elem.getElementsByTagName("nominal").item(0).getTextContent())
                     );
-                    valute.add(exchangeRatesXml1);
+                    valute.add(exchangeRates);
                 }
             }
 
@@ -55,6 +56,6 @@ public class XMLService {
             logger.error(ex.getMessage());
         }
 
-        return exchangeRatesXml;
+        return exchangeRates;
     }
 }

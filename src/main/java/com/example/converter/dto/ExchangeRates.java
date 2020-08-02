@@ -9,7 +9,10 @@ import javax.persistence.Id;
 public class ExchangeRates {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Integer id;
+
+    private int numCode;
 
     private String name;
 
@@ -21,8 +24,9 @@ public class ExchangeRates {
 
     public ExchangeRates(){}
 
-    public ExchangeRates (String name, String charCode, long value, int nominal){
+    public ExchangeRates (Integer id, int numCode,  String name, String charCode, double value, int nominal){
         this.name = name;
+        this.numCode = numCode;
         this.charCode = charCode;
         this.nominal = nominal;
         this.value = value;
@@ -34,6 +38,14 @@ public class ExchangeRates {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public int getNumCode() {
+        return numCode;
+    }
+
+    public void setNumCode(int numCode) {
+        this.numCode = numCode;
     }
 
     public String getName() {

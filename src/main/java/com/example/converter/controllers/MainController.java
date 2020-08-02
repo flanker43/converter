@@ -1,5 +1,6 @@
 package com.example.converter.controllers;
 
+import com.example.converter.XMLService;
 import com.example.converter.dto.ExchangeRates;
 import com.example.converter.dto.ChangeHistory;
 
@@ -17,13 +18,14 @@ import java.util.Map;
 @Controller
 public class MainController {
 
-
+    XMLService xmlService = new XMLService();
 
     @Autowired
     private ExchangeRatesRepo exchangeRatesRepo;
 
     @GetMapping("/main")
     public String main(Map<String, Object> model) {
+        xmlService.parseXml();
         Iterable<ExchangeRates> exchangeRates = exchangeRatesRepo.findAll();
         model.put("exchangeRates", exchangeRates);
         return "main";
