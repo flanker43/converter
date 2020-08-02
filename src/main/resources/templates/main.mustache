@@ -7,13 +7,12 @@
             <option value="none" hidden="">Выберите валюту</option>
             <option value="">{{#exchangeRates}} {{name}} {{/exchangeRates}}</option>
         </select>
-        <input type="text" name="value" placeholder="Введите значение" />
+        <input type="text" name="text" placeholder="Введите значение" />
         <input type="hidden" name="_csrf" value="{{_csrf.token}}">
         <button type="submit">Конвертировать</button>
     </form>
 </div>
-<!--<div class="resultFrom">-->
-<!--    {{resultFrom}}-->
+  {{resultFrom}}
 </div>
 <div class="to">
     <form method="post" action="to">
@@ -56,7 +55,7 @@
 <!--        <option value=”KRW”>Вон Республики Корея</option>-->
 <!--        <option value=”JPY”>Японских иен</option>-->
     </select>
-        <input type="text" name="value" placeholder="Введите значение" />
+        <input type="text" name="text1" placeholder="Введите значение" />
         <input type="hidden" name="_csrf" value="{{_csrf.token}}">
         <button type="submit">Конвертировать</button>
     </form>

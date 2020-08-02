@@ -26,22 +26,20 @@ public class MainController {
     @GetMapping("/main")
     public String main(Map<String, Object> model) {
         xmlService.parseXml();
-        Iterable<ExchangeRates> exchangeRates = exchangeRatesRepo.findAll();
-        model.put("exchangeRates", exchangeRates);
         return "main";
     }
 
     @PostMapping("from")
-    public String from(@RequestParam String value, Map<String, Object> model) {
-        Iterable<ExchangeRates> exchangeRates = exchangeRatesRepo.findByName(value);
-        model.put("exchangeRates", exchangeRates);
+    public String from(@RequestParam String value, @RequestParam String text, Map<String, Object> model) {
+        double result = Double.parseDouble(text) * Double.parseDouble(String.valueOf(exchangeRatesRepo.findByName(value)));
+        model.put("resultFrom", result);
         return "main";
     }
 
     @PostMapping("to")
-    public String to(Map<String, Object> model) {
-        Iterable<ExchangeRates> exchangeRates = exchangeRatesRepo.findAll();
-        model.put("exchangeRates", exchangeRates);
+    public String to(@RequestParam String value, @RequestParam String text1, Map<String, Object> model) {
+        double result = Double.parseDouble(text1) * Double.parseDouble(String.valueOf(exchangeRatesRepo.findByName(value)));
+        model.put("resultTo", result);
         return "main";
     }
 }
