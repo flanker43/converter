@@ -1,31 +1,23 @@
-package com.example.converter.domain;
+package com.example.converter.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+public class ExchangeRatesXml {
 
-@Entity
-public class ExchangeRates {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String name;
 
     private String charCode;
 
-    private long value;
+    private double value;
 
     private int nominal;
 
-    public ExchangeRates(){}
-
-    public ExchangeRates (String name, String charCode, long value, int nominal){
+    public ExchangeRatesXml(Integer id, String name, String charCode, double value, int nominal) {
+        this.id = id;
         this.name = name;
         this.charCode = charCode;
-        this.nominal = nominal;
         this.value = value;
+        this.nominal = nominal;
     }
 
     public Integer getId() {
@@ -52,11 +44,11 @@ public class ExchangeRates {
         this.charCode = charCode;
     }
 
-    public long getValue() {
+    public double getValue() {
         return value;
     }
 
-    public void setValue(long value) {
+    public void setValue(double value) {
         this.value = value;
     }
 

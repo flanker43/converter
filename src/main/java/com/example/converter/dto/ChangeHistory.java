@@ -1,4 +1,4 @@
-package com.example.converter.domain;
+package com.example.converter.dto;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,9 +14,9 @@ public class ChangeHistory {
 
     private long date;
 
-    private long userSum;
+    private double userSum;
 
-    private long complSum;
+    private double complSum;
 
     private String charCodeBefore;
 
@@ -49,7 +49,7 @@ public class ChangeHistory {
         this.date = date;
     }
 
-    public long getUserSum() {
+    public double getUserSum() {
         return userSum;
     }
 
@@ -57,7 +57,7 @@ public class ChangeHistory {
         this.userSum = userSum;
     }
 
-    public long getComplSum() {
+    public double getComplSum() {
         return complSum;
     }
 
