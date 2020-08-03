@@ -47,7 +47,7 @@ public class MainController {
     public String to(@RequestParam String value, @RequestParam String text1, Map<String, Object> model) {
         double result = Double.parseDouble(text1) * Double.parseDouble(String.valueOf(exchangeRatesRepo.findByName(value)));
         Date date = new Date();
-        ChangeHistory changeHistory = new ChangeHistory(date, Double.parseDouble(text1), result, value, "₽");
+        ChangeHistory changeHistory = new ChangeHistory(date, Double.parseDouble(text1), result, "₽", value);
         model.put("history", changeHistory);
         return "main";
     }
