@@ -29,8 +29,8 @@ public class MainController {
     @GetMapping("/main")
     public String main(Map<String, Object> model) {
         xmlService.parseXml();
-        Iterable<ChangeHistory> changeHistories = changeHistory.findAll();
-        model.put("history", changeHistories);
+        Iterable<ExchangeRates> exchangeRates = exchangeRatesRepo.findAll();
+        model.put("history", exchangeRates);
         return "main";
     }
 
