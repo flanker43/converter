@@ -25,7 +25,7 @@ public class XMLService {
         ExchangeRates exchangeRates = null;
 
         try {
-            String URL = restClient.get("www.cbr.ru/scripts/XML_daily.asp");
+            String URL = restClient.get("http://www.cbr.ru/scripts/XML_daily.asp");
 
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();

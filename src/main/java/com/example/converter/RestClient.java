@@ -9,10 +9,8 @@ import org.springframework.web.client.RestTemplate;
 
 public class RestClient {
 
-    private String server = "http://";
     private RestTemplate rest;
     private HttpHeaders headers;
-    private HttpStatus status;
 
     public RestClient() {
         this.rest = new RestTemplate();
@@ -22,16 +20,7 @@ public class RestClient {
 
     public String get(String uri) {
         HttpEntity<String> requestEntity = new HttpEntity<String>("", headers);
-        ResponseEntity<String> responseEntity = rest.exchange(server + uri, HttpMethod.GET, requestEntity, String.class);
-        this.setStatus(responseEntity.getStatusCode());
+        ResponseEntity<String> responseEntity = rest.exchange(uri, HttpMethod.GET, requestEntity, String.class);
         return responseEntity.getBody();
-    }
-
-    public HttpStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(HttpStatus status) {
-        this.status = status;
     }
 }
