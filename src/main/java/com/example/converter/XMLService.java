@@ -10,6 +10,7 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +20,12 @@ public class XMLService {
 
     public ExchangeRates parseXml() {
 
+        RestClient restClient = new RestClient();
+
         ExchangeRates exchangeRates = null;
 
         try {
-            String URL = "http://www.cbr.ru/scripts/XML_daily.asp";
+            String URL = restClient.get("scripts/XML_daily.asp");
 
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -32,7 +35,7 @@ public class XMLService {
 
             NodeList nodeList = doc.getElementsByTagName("Valute");
 
-            List<ExchangeRates> valute = new ArrayList<>();
+            List<ExchangeRates> exchangeValute = new ArrayList<>();
 
             for (int i = 0; i < nodeList.getLength(); i++) {
 
@@ -41,6 +44,7 @@ public class XMLService {
                 if(node.getNodeType() == Node.ELEMENT_NODE) {
                     Element elem = (Element) node;
                     exchangeRates = new ExchangeRates(
+                            elem.getAttribute("ValCurs Date"),
                             Integer.parseInt(elem.getAttribute("Valute ID")),
                             Integer.parseInt(elem.getElementsByTagName("NumCode").item(0).getTextContent()),
                             elem.getElementsByTagName("name").item(0).getTextContent(),
@@ -48,7 +52,7 @@ public class XMLService {
                             Double.parseDouble(elem.getElementsByTagName("value").item(0).getTextContent()),
                             Integer.parseInt(elem.getElementsByTagName("nominal").item(0).getTextContent())
                     );
-                    valute.add(exchangeRates);
+                    exchangeValute.add(exchangeRates);
                 }
             }
 
