@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class ChangeHistory {
@@ -12,7 +13,7 @@ public class ChangeHistory {
 
     private Integer id;
 
-    private long date;
+    private Date date;
 
     private double userSum;
 
@@ -25,7 +26,7 @@ public class ChangeHistory {
     public ChangeHistory() {
     }
 
-    public ChangeHistory(long date, long userSum, long complSum, String charCodeBefore, String charCodeAfter) {
+    public ChangeHistory(Date date, double userSum, double complSum, String charCodeBefore, String charCodeAfter) {
         this.date = date;
         this.userSum = userSum;
         this.complSum = complSum;
@@ -41,11 +42,11 @@ public class ChangeHistory {
         this.id = id;
     }
 
-    public long getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

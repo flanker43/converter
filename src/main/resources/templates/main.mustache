@@ -7,27 +7,34 @@
             <option value="none" hidden="">Выберите валюту</option>
             <option value="">{{#exchangeRates}} {{name}} {{/exchangeRates}}</option>
         </select>
-        <input type="text" name="text" placeholder="Введите значение" />
+        <input type="text" name="text" placeholder="Введите значение"/>
         <input type="hidden" name="_csrf" value="{{_csrf.token}}">
         <button type="submit">Конвертировать</button>
     </form>
-</div>
-  {{resultFrom}}
 </div>
 <div class="to">
     <form method="post" action="to">
-    <select id="selectID">
-        <option value="none" hidden="">Выберите валюту</option>
-        <option value="">{{#exchangeRates}} {{name}} {{/exchangeRates}}</option>
+        <select id="selectID">
+            <option value="none" hidden="">Выберите валюту</option>
+            <option value="">{{#exchangeRates}} {{name}} {{/exchangeRates}}</option>
 
-    </select>
-        <input type="text" name="text1" placeholder="Введите значение" />
+        </select>
+        <input type="text" name="text1" placeholder="Введите значение"/>
         <input type="hidden" name="_csrf" value="{{_csrf.token}}">
         <button type="submit">Конвертировать</button>
     </form>
 </div>
-<!--<div class="resultTo">-->
-<!--    {{resultTo}}-->
+<div class="history">
+    {{#history}}
+        <div class="table">
+            <b>{{ id }}</b>
+            <b>{{ date }}</b>
+            <b>{{ userSum }}</b>
+            <b>{{ complSum }}</b>
+            <b>{{ charCodeBefore }}</b>
+            <b>{{ charCodeAfter }}</b>
+        </div>
+    {{/history}}
 </div>
 </body>
 </html>
