@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 public class RestClient {
 
-    private String server = "http://www.cbr.ru/";
+    private String server = "http://";
     private RestTemplate rest;
     private HttpHeaders headers;
     private HttpStatus status;
@@ -17,7 +17,6 @@ public class RestClient {
     public RestClient() {
         this.rest = new RestTemplate();
         this.headers = new HttpHeaders();
-//        headers.add("Content-Type", "application/json");
         headers.add("Accept", "*/*");
     }
 
