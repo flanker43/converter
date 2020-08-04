@@ -11,9 +11,7 @@ public class ExchangeRates {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private String date;
-
-    private Integer id;
+    private String id;
 
     private int numCode;
 
@@ -28,20 +26,20 @@ public class ExchangeRates {
     public ExchangeRates() {
     }
 
-    public ExchangeRates(String date, Integer id, int numCode, String name, String charCode, double value, int nominal) {
-        this.date = date;
-        this.name = name;
+    public ExchangeRates(String id, int numCode, String charCode, int nominal, String name,  double value) {
+        this.id = id;
         this.numCode = numCode;
         this.charCode = charCode;
         this.nominal = nominal;
+        this.name = name;
         this.value = value;
     }
 
-    public Integer getId() {
+    public String  getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String  id) {
         this.id = id;
     }
 
@@ -83,14 +81,6 @@ public class ExchangeRates {
 
     public void setNominal(int nominal) {
         this.nominal = nominal;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public void setValue(double value) {
